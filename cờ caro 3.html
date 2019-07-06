@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        input {
+            width: 50px;
+            height: 20px;
+        }
+
+        #board {
+            margin-top: 50px;
+            margin-left: 500px;
+        }
+
+        h1 {
+            margin-left: 450px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<h1>Chơi cờ caro nào !!!</h1>
+<div id="board">
+    <input type="button" value="" id="0" onclick="out_Put(this,0,0)">
+    <input type="button" value="" id="1" onclick="out_Put(this,0,1)">
+    <input type="button" value="" id="2" onclick="out_Put(this,0,2)">
+    <input type="button" value="" id="3" onclick="out_Put(this,0,3)">
+    <input type="button" value="" id="4" onclick="out_Put(this,0,4)">
+
+    <br>
+    <input type="button" value="" id="5" onclick="out_Put(this,1,0)">
+    <input type="button" value="" id="6" onclick="out_Put(this,1,1)">
+    <input type="button" value="" id="7" onclick="out_Put(this,1,2)">
+    <input type="button" value="" id="8" onclick="out_Put(this,1,3)">
+    <input type="button" value="" id="9" onclick="out_Put(this,1,4)">
+    <br>
+    <input type="button" value="" id="10" onclick="out_Put(this,2,0)">
+    <input type="button" value="" id="11" onclick="out_Put(this,2,1)">
+    <input type="button" value="" id="12" onclick="out_Put(this,2,2)">
+    <input type="button" value="" id="13" onclick="out_Put(this,2,3)">
+    <input type="button" value="" id="14" onclick="out_Put(this,2,4)">
+    <br>
+    <input type="button" value="" id="15" onclick="out_Put(this,3,0)">
+    <input type="button" value="" id="16" onclick="out_Put(this,3,1)">
+    <input type="button" value="" id="17" onclick="out_Put(this,3,2)">
+    <input type="button" value="" id="18" onclick="out_Put(this,3,3)">
+    <input type="button" value="" id="19" onclick="out_Put(this,3,4)">
+    <br>
+    <input type="button" value="" id="20" onclick="out_Put(this,4,0)">
+    <input type="button" value="" id="21" onclick="out_Put(this,4,1)">
+    <input type="button" value="" id="22" onclick="out_Put(this,4,2)">
+    <input type="button" value="" id="23" onclick="out_Put(this,4,3)">
+    <input type="button" value="" id="24" onclick="out_Put(this,4,4)">
+</div>
+<script>
+    let arr = [
+        ["", "", "", "", ""],
+        ["", "", "", "", ""],
+        ["", "", "", "", ""],
+        ["", "", "", "", ""],
+        ["", "", "", "", ""],
+    ];
+    let luotChoi = 0;
+
+    function out_Put(myButton, i, j) {
+        if (!myButton.value) {
+            if (luotChoi == 0) {
+                myButton.value = "X";
+                arr[i][j] = "X";
+                luotChoi = 1;
+            } else {
+                myButton.value = "O";
+                arr[i][j] = "O";
+                luotChoi = 0;
+            }
+        }
+        checkWin(myButton);
+    }
+
+    function checkWin(myButton) {
+        for (let i = 0; i < arr.length; i++) {
+            for (let j = 0; j < arr[i].length; j++) {
+                //Check hàng ngang
+                if (myButton.value != "" && arr[i][j] == arr[i][j + 1] && arr[i][j + 1] == arr[i][j + 2]) {
+                    if (arr[i][j] == 'X') {
+                        alert('Người chơi X chiến thắng !!');
+                    } else if (arr[i][j] == 'O') {
+                        alert('Người chơi O chiến thắng !!');
+                    }
+                }
+                // check hàng dọc
+                if (myButton.value != "" && arr[i][j] == arr[i+1][j] && arr[i+2][j] == arr[i+1][j]) {
+                    if (arr[i][j] == 'X') {
+                        alert('Người chơi X chiến thắng !!');
+                    } else if (arr[i][j] == 'O') {
+                        alert('Người chơi O chiến thắng !!');
+                    }
+                }
+                // check hàng chéo
+                if (myButton.value != "" && arr[i][j] == arr[i+1][j+1] && arr[i+2][j+2]== arr[i+1][j+1]){
+                    if (arr[i][j] == 'X'){
+                        alert('Người chơi X chiến thắng !!');
+                    }
+                    else if (arr[i][j] =='O') {
+                        alert('Người chơi O chiến thắng !!');
+                    }
+                }
+            }
+        }
+
+    }
+
+
+</script>
+</body>
+</html>
